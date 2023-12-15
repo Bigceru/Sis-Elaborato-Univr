@@ -1,0 +1,14 @@
+.model FSMD
+.inputs Reset Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0
+.outputs fineOperazione erroreSensore Valvola_acido Valvola_basico PH_f7 PH_f6 PH_f5 PH_f4 PH_f3 PH_f2 PH_f1 PH_f0 NCLK_f7 NCLK_f6 NCLK_f5 NCLK_f4 NCLK_f3 NCLK_f2 NCLK_f1 NCLK_f0
+
+#FSM
+.subckt fsm Rst=Reset Start=Start PH_i7=PH_i7 PH_i6=PH_i6 PH_i5=PH_i5 PH_i4=PH_i4 PH_i3=PH_i3 PH_i2=PH_i2 PH_i1=PH_i1 PH_i0=PH_i0 segnaleFine=seganleFineUse fineOperazione=fineOperazione erroreSensore=erroreSensore Valvola_acido=Valvola_acido Valvola_basico=Valvola_basico segnaleInizio=segnaleInizio segnaleGiusto=segnaleGiustoUse
+
+#Datapath
+.subckt datapath segnaleInizio=segnaleInizio Reset=Reset segnaleGiusto=segnaleGiustoUse Valvola_acido=Valvola_acido Valvola_basico=Valvola_basico PH_input7=PH_i7 PH_input6=PH_i6 PH_input5=PH_i5 PH_input4=PH_i4 PH_input3=PH_i3 PH_input2=PH_i2 PH_input1=PH_i1 PH_input0=PH_i0 segnaleFine=seganleFineUse PH_f7=PH_f7 PH_f6=PH_f6 PH_f5=PH_f5 PH_f4=PH_f4 PH_f3=PH_f3 PH_f2=PH_f2 PH_f1=PH_f1 PH_f0=PH_f0 NCLK_f7=NCLK_f7 NCLK_f6=NCLK_f6 NCLK_f5=NCLK_f5 NCLK_f4=NCLK_f4 NCLK_f3=NCLK_f3 NCLK_f2=NCLK_f2 NCLK_f1=NCLK_f1 NCLK_f0=NCLK_f0
+
+.search fsmOptimize.blif
+.search datapath.blif
+
+.end

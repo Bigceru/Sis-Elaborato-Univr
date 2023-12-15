@@ -1,0 +1,78 @@
+.model fsm
+.inputs Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine
+.outputs fineOperazione erroreSensore Valvola_acido Valvola_basico segnaleInizio segnaleGiusto
+
+.start_kiss
+.i 11
+.o 6
+.s 4
+.p 28
+.r Reset
+
+#Resto in Reset perché lo Start non è 1, oppure perché c'è Reset ad 1
+
+00--------- Reset Reset 0000-0
+1---------- Reset Reset 0000-0
+
+#Resto in Reset perché il PH è maggiore di 14, dò in output errore sensore ad 1
+
+01111----1- Reset Reset 0100-0
+01111---1-- Reset Reset 0100-0
+01111--1--- Reset Reset 0100-0
+01111-1---- Reset Reset 0100-0
+011111----- Reset Reset 0100-0
+
+#Vado a Fine quando il PH è già compreso tra 7 e 8 (vado nello stato basico per stampare il PH ed il NCLK)
+
+010111----1 Reset Basico 000011
+01100000001 Reset Basico 000011
+
+#PARTE BASICA, PH maggiore di 8, apro la valvola acida e metto segnaleInizio ad 1
+
+011000---1- Reset Basico 001010
+011000--1-- Reset Basico 001010
+011000-1--- Reset Basico 001010
+0110001---- Reset Basico 001010
+0110-1----- Reset Basico 001010
+011010----- Reset Basico 001010
+01110------ Reset Basico 001010
+0111100000- Reset Basico 001010
+
+#Rimane in Basico, per arrivare ad avere il PH tra 7 e 8 (segnaleInizio diventa 0)
+
+0---------0 Basico Basico 001000
+
+#Da Basico a Reset quando il Reset è 1
+
+1---------0 Basico Reset 000000
+
+#Da Basico a Fine perché segnaleFine è 1, quindi il PH è nel range di neutralità
+
+----------1 Basico Fine 1000-0
+
+#PARTE ACIDA, PH minore di 7, apro la valvola basica e metto segnaleInizio ad 1
+
+010000----- Reset Acido 000110
+0100-1----- Reset Acido 000110
+01010------ Reset Acido 000110
+010-10----- Reset Acido 000110
+
+#Rimane in Acido, per arrivare ad avere il PH tra 7 e 8 (segnaleInizio diventa 0)
+
+0---------0 Acido Acido 000100
+
+#Da Acido a Reset quando il Reset è 1
+
+1---------- Acido Reset 000000
+
+#Da Acido a Fine perché segnaleFine è 1, quindi il PH è nel range di neutralità
+
+0---------1 Acido Fine 1000-0
+
+#Da Fine a Reset, quando abbiamo già raggiunto il PH neutro
+
+----------- Fine Reset 000000
+
+.end_kiss
+
+.end

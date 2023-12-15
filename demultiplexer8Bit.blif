@@ -1,0 +1,36 @@
+.model demultiplexer8Bit
+.inputs A7 A6 A5 A4 A3 A2 A1 A0 Segnale
+.outputs O7 O6 O5 O4 O3 O2 O1 O0 Z7 Z6 Z5 Z4 Z3 Z2 Z1 Z0
+.names Segnale A7 O7
+11 1
+.names Segnale A6 O6
+11 1
+.names Segnale A5 O5
+11 1
+.names Segnale A4 O4
+11 1
+.names Segnale A3 O3
+11 1
+.names Segnale A2 O2
+11 1
+.names Segnale A1 O1
+11 1
+.names Segnale A0 O0
+11 1
+.names Segnale A7 Z7
+01 1
+.names Segnale A6 Z6
+01 1
+.names Segnale A5 Z5
+01 1
+.names Segnale A4 Z4
+01 1
+.names Segnale A3 Z3
+01 1
+.names Segnale A2 Z2
+01 1
+.names Segnale A1 Z1
+01 1
+.names Segnale A0 Z0
+01 1
+.end

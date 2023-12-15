@@ -1,0 +1,17 @@
+#POSSIBILE PROBLEMA (nell'uscita che non voglio usare mi stampa tutti 0)
+.model demultiplexer8Bit
+.inputs A7 A6 A5 A4 A3 A2 A1 A0 Segnale
+.outputs O7 O6 O5 O4 O3 O2 O1 O0 Z7 Z6 Z5 Z4 Z3 Z2 Z1 Z0
+
+#creo il demultiplexer ad 8 bit usando come base il demultiplexer ad 1 bit
+.subckt demultiplexer1Bit Segnale=Segnale A=A7 O=O7 Z=Z7
+.subckt demultiplexer1Bit Segnale=Segnale A=A6 O=O6 Z=Z6
+.subckt demultiplexer1Bit Segnale=Segnale A=A5 O=O5 Z=Z5
+.subckt demultiplexer1Bit Segnale=Segnale A=A4 O=O4 Z=Z4
+.subckt demultiplexer1Bit Segnale=Segnale A=A3 O=O3 Z=Z3
+.subckt demultiplexer1Bit Segnale=Segnale A=A2 O=O2 Z=Z2
+.subckt demultiplexer1Bit Segnale=Segnale A=A1 O=O1 Z=Z1
+.subckt demultiplexer1Bit Segnale=Segnale A=A0 O=O0 Z=Z0
+
+.search demultiplexer1Bit.blif
+.end

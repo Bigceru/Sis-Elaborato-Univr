@@ -1,0 +1,16 @@
+.model multiplexer8Bit
+.inputs A7 A6 A5 A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0 Segnale
+.outputs O7 O6 O5 O4 O3 O2 O1 O0
+
+#creo il multiplexer ad 8 bit usando come base il multiplexer ad 1 bit
+.subckt multiplexer1Bit Segnale=Segnale A=A7 B=B7 O=O7
+.subckt multiplexer1Bit Segnale=Segnale A=A6 B=B6 O=O6
+.subckt multiplexer1Bit Segnale=Segnale A=A5 B=B5 O=O5
+.subckt multiplexer1Bit Segnale=Segnale A=A4 B=B4 O=O4
+.subckt multiplexer1Bit Segnale=Segnale A=A3 B=B3 O=O3
+.subckt multiplexer1Bit Segnale=Segnale A=A2 B=B2 O=O2
+.subckt multiplexer1Bit Segnale=Segnale A=A1 B=B1 O=O1
+.subckt multiplexer1Bit Segnale=Segnale A=A0 B=B0 O=O0
+
+.search multiplexer1Bit.blif
+.end

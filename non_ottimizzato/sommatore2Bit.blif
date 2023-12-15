@@ -1,0 +1,12 @@
+.model sommatore2Bit
+.inputs 1num1 1num0 2num1 2num0 rip #1num1 (primo numero seconda cifra), 1num0 (primo numero prima cifra)
+.outputs out1 out0 printRip
+
+#richiamo il sommatore da 1 bit e prenso la cifra meno significativa di entrambi i numeri e la passo al sommatore ad 1 bit
+.subckt sommatore A=1num0 B=2num0 rip=rip out=out0 printRip=UseRip
+
+#ora richiamo di nuovo il sommatore ad 1 bit per fare la somma della seconda cifra e tengo conto del resto che potrei avere dalla prima somma
+.subckt sommatore A=1num1 B=2num1 rip=UseRip out=out1 printRip=printRip
+
+.search sommatore.blif
+.end

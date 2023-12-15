@@ -1,0 +1,203 @@
+.model datapath
+.inputs segnaleInizio segnaleGiusto Reset Valvola_basico Valvola_acido PH_input7 PH_input6 PH_input5 PH_input4 PH_input3 PH_input2 PH_input1 PH_input0
+.outputs segnaleFine PH_f7 PH_f6 PH_f5 PH_f4 PH_f3 PH_f2 PH_f1 PH_f0 NCLK_f7 NCLK_f6 NCLK_f5 NCLK_f4 NCLK_f3 NCLK_f2 NCLK_f1 NCLK_f0
+
+#definisco le costanti per poterle usare nel datapath
+.subckt costante0 O=zero
+.subckt costante1 O=uno
+
+#REGISTRI per:
+#segnaleInizio
+.subckt registro1Bit A=segnaleInizio O=segnaleInizioUse
+
+#Reset
+.subckt registro1Bit A=Reset O=Rst
+
+#segnaleGiusto
+.subckt registro1Bit A=segnaleGiusto O=segnaleGiustoUse
+
+#Valvola_basico
+.subckt registro1Bit A=Valvola_basico O=Valvola_basicoUse
+
+#Valvola_acido
+.subckt registro1Bit A=Valvola_acido O=Valvola_acidoUse
+
+#registro PH
+.subckt registro8Bit A7=PH_input7 A6=PH_input6 A5=PH_input5 A4=PH_input4 A3=PH_input3 A2=PH_input2 A1=PH_input1 A0=PH_input0 O7=PH_i7 O6=PH_i6 O5=PH_i5 O4=PH_i4 O3=PH_i3 O2=PH_i2 O1=PH_i1 O0=PH_i0
+
+#ACIDO, valvola Basico
+
+
+###L'out1 vecchio (dato dall'uguale iniziale vecchio) diventa l'out dell'AND (prima era out2, perchè avevamo il  SegnaleInizio-->multiplexer-->out0 -->uguale --> out1 --> AND --> out 2)
+###ORA (SegnaleInizio+Valvola-->AND-->out1-->OR-->MUX). All'entrata dell'OR ho out1 e il nuovo Rst (Ora partiamo direttamente dall'out1 in quanto dovremmo
+###cambiare tutti i vecchi out nei multiplixer ecc..)
+
+#entro nel primo multiplexer, se ho segnaleIniziale 1 passo 1, altrimenti 0
+##.subckt multiplexer1Bit Segnale=segnaleInizioUse A=uno B=zero O=out0
+
+#primo uguale restituisce uno per far partire i cicli col PH_iniziale
+##.subckt uguale1Bit A=out0 B=uno O=out1
+
+#AND (PRIMA)
+##.names out1 Valvola_basicoUse out2
+##11 1
+
+#AND (DOPO)
+.names segnaleInizioUse Valvola_basicoUse out1
+11 1
+
+#OR (NUOVO)
+.names out1 Rst out2
+11 1
+10 1
+01 1 
+
+#multiplexer
+.subckt multiplexer8Bit Segnale=out2 A7=PH_i7 A6=PH_i6 A5=PH_i5 A4=PH_i4 A3=PH_i3 A2=PH_i2 A1=PH_i1 A0=PH_i0 B7=PH_z7 B6=PH_z6 B5=PH_z5 B4=PH_z4 B3=PH_z3 B2=PH_z2 B1=PH_z1 B0=PH_z0 O7=PH_e7 O6=PH_e6 O5=PH_e5 O4=PH_e4 O3=PH_e3 O2=PH_e2 O1=PH_e1 O0=PH_e0
+
+#sommatore +0.25
+.subckt sommatore8Bit rip=zero 1num7=PH_e7 1num6=PH_e6 1num5=PH_e5 1num4=PH_e4 1num3=PH_e3 1num2=PH_e2 1num1=PH_e1 1num0=PH_e0 2num3=zero 2num2=uno 2num1=zero 2num0=zero out7=PH_r7 out6=PH_r6 out5=PH_r5 out4=PH_r4 out3=PH_r3 out2=PH_r2 out1=PH_r1 out0=PH_r0 printRip=printRipA
+
+#mi registro il valore del PH appena sommato
+.subckt registro8Bit A7=PH_r7 A6=PH_r6 A5=PH_r5 A4=PH_r4 A3=PH_r3 A2=PH_r2 A1=PH_r1 A0=PH_r0 O7=PH_c7 O6=PH_c6 O5=PH_c5 O4=PH_c4 O3=PH_c3 O2=PH_c2 O1=PH_c1 O0=PH_c0
+
+#maggiore di 6,999999 per far finire il ciclo
+.subckt maggiore8Bit A7=PH_c7 A6=PH_c6 A5=PH_c5 A4=PH_c4 A3=PH_c3 A2=PH_c2 A1=PH_c1 A0=PH_c0 B7=zero B6=uno B5=uno B4=zero B3=uno B2=uno B1=uno B0=uno O=segnaleFineA
+
+#demultiplexer per dare in output il PH_finale oopure continuare il ciclo
+.subckt demultiplexer8Bit Segnale=segnaleFineA A7=PH_c7 A6=PH_c6 A5=PH_c5 A4=PH_c4 A3=PH_c3 A2=PH_c2 A1=PH_c1 A0=PH_c0 O7=PH_Af7 O6=PH_Af6 O5=PH_Af5 O4=PH_Af4 O3=PH_Af3 O2=PH_Af2 O1=PH_Af1 O0=PH_Af0 Z7=PH_z7 Z6=PH_z6 Z5=PH_z5 Z4=PH_z4 Z3=PH_z3 Z2=PH_z2 Z1=PH_z1 Z0=PH_z0
+
+#controllo che il segnale di fine e la valvola del circuito che voglio siano concordanti
+.names segnaleFineA Valvola_basicoUse FinaleA
+11 1
+
+
+#--i-->multiplexer_inizio--e-->+--r-->registro--c-->DEMUX_fine--f-->finito
+#            /\                                                ||
+#            ||                                                \/
+#            ----------------------------z-----------------------
+#                                      --c-->Uguale--f-->finito
+
+
+
+#BASICO, valvola Acido
+
+#AND (PRIMA)
+##.names out1 Valvola_acidoUse Bout2
+##11 1
+
+#AND (DOPO)
+.names segnaleInizioUse Valvola_acidoUse Bout1
+11 1
+
+#OR (NUOVO)
+.names Bout1 Rst Bout2
+11 1
+10 1
+01 1
+
+#multiplexer
+.subckt multiplexer8Bit Segnale=Bout2 A7=PH_i7 A6=PH_i6 A5=PH_i5 A4=PH_i4 A3=PH_i3 A2=PH_i2 A1=PH_i1 A0=PH_i0 B7=PH_Bz7 B6=PH_Bz6 B5=PH_Bz5 B4=PH_Bz4 B3=PH_Bz3 B2=PH_Bz2 B1=PH_Bz1 B0=PH_Bz0 O7=PH_Be7 O6=PH_Be6 O5=PH_Be5 O4=PH_Be4 O3=PH_Be3 O2=PH_Be2 O1=PH_Be1 O0=PH_Be0
+
+#sommatore -0.5
+.subckt sommatore8Bit rip=zero 1num7=PH_Be7 1num6=PH_Be6 1num5=PH_Be5 1num4=PH_Be4 1num3=PH_Be3 1num2=PH_Be2 1num1=PH_Be1 1num0=PH_Be0 2num3=uno 2num2=zero 2num1=uno 2num0=uno out7=PH_Br7 out6=PH_Br6 out5=PH_Br5 out4=PH_Br4 out3=PH_Br3 out2=PH_Br2 out1=PH_Br1 out0=PH_Br0 printRip=printRipB
+
+#mi registro il valore del PH appena sommato
+.subckt registro8Bit A7=PH_Br7 A6=PH_Br6 A5=PH_Br5 A4=PH_Br4 A3=PH_Br3 A2=PH_Br2 A1=PH_Br1 A0=PH_Br0 O7=PH_Bc7 O6=PH_Bc6 O5=PH_Bc5 O4=PH_Bc4 O3=PH_Bc3 O2=PH_Bc2 O1=PH_Bc1 O0=PH_Bc0
+
+#minore di 8.0000001 per far finire il ciclo
+.subckt minore8Bit A7=PH_Bc7 A6=PH_Bc6 A5=PH_Bc5 A4=PH_Bc4 A3=PH_Bc3 A2=PH_Bc2 A1=PH_Bc1 A0=PH_Bc0 B7=uno B6=zero B5=zero B4=zero B3=zero B2=zero B1=zero B0=uno O=min
+
+#maggiore di 6,999999 per far finire il ciclo
+.subckt maggiore8Bit A7=PH_Bc7 A6=PH_Bc6 A5=PH_Bc5 A4=PH_Bc4 A3=PH_Bc3 A2=PH_Bc2 A1=PH_Bc1 A0=PH_Bc0 B7=zero B6=uno B5=uno B4=zero B3=uno B2=uno B1=uno B0=uno O=max
+
+#AND tra minore e maggiore, per controllare se il PH finale è nel range accettato
+.names min max segnaleFineB
+11 1
+
+#demultiplexer per dare in output il PH_finale oppure continuare il ciclo
+.subckt demultiplexer8Bit Segnale=segnaleFineB A7=PH_Bc7 A6=PH_Bc6 A5=PH_Bc5 A4=PH_Bc4 A3=PH_Bc3 A2=PH_Bc2 A1=PH_Bc1 A0=PH_Bc0 O7=PH_Bf7 O6=PH_Bf6 O5=PH_Bf5 O4=PH_Bf4 O3=PH_Bf3 O2=PH_Bf2 O1=PH_Bf1 O0=PH_Bf0 Z7=PH_Bz7 Z6=PH_Bz6 Z5=PH_Bz5 Z4=PH_Bz4 Z3=PH_Bz3 Z2=PH_Bz2 Z1=PH_Bz1 Z0=PH_Bz0
+
+#multiplexer per decidere il PH da dare in output
+.subckt multiplexer8Bit Segnale=Valvola_basicoUse A7=PH_Af7 A6=PH_Af6 A5=PH_Af5 A4=PH_Af4 A3=PH_Af3 A2=PH_Af2 A1=PH_Af1 A0=PH_Af0 B7=PH_Bf7 B6=PH_Bf6 B5=PH_Bf5 B4=PH_Bf4 B3=PH_Bf3 B2=PH_Bf2 B1=PH_Bf1 B0=PH_Bf0 O7=PH_fpremux7 O6=PH_fpremux6 O5=PH_fpremux5 O4=PH_fpremux4 O3=PH_fpremux3 O2=PH_fpremux2 O1=PH_fpremux1 O0=PH_fpremux0
+
+#controllo che il segnale di fine e la valvola del circuito che voglio siano concordanti
+.names segnaleFineB Valvola_acidoUse FinaleB
+11 1
+
+#CONTROLLI FINALI
+
+#OR fine, basta che uno dei 2 "cicli" abbia finito
+.names FinaleA FinaleB segnalePreFine
+10 1
+01 1
+
+#NCLK (PRIMA)
+#-i->multiplexer-e->
+##.subckt multiplexer8Bit Segnale=segnaleInizioUse A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=zero B7=NCLK_i7 B6=NCLK_i6 B5=NCLK_i5 B4=NCLK_i4 B3=NCLK_i3 B2=NCLK_i2 B1=NCLK_i1 B0=NCLK_i0 O7=NCLK_e7 O6=NCLK_e6 O5=NCLK_e5 O4=NCLK_e4 O3=NCLK_e3 O2=NCLK_e2 O1=NCLK_e1 O0=NCLK_e0
+
+#NCLK (DOPO)
+#Il mio segnaleInizioUse vecchio lo mettono in input di una porta OR con il Rst e in output mi danno out3 il quale entra nel multiplexer
+#Prima come segnale avevamo segnaleInizioUse, ora out3 (uscita dell'or)
+#-i+reset->multiplexer-e->out3
+#OR 
+.names Rst segnaleInizioUse out3
+10 1
+01 1
+11 1
+
+.subckt multiplexer8Bit Segnale=out3 A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=zero B7=NCLK_i7 B6=NCLK_i6 B5=NCLK_i5 B4=NCLK_i4 B3=NCLK_i3 B2=NCLK_i2 B1=NCLK_i1 B0=NCLK_i0 O7=NCLK_e7 O6=NCLK_e6 O5=NCLK_e5 O4=NCLK_e4 O3=NCLK_e3 O2=NCLK_e2 O1=NCLK_e1 O0=NCLK_e0
+
+#-e->sommatore-r->
+#sommatore 8 bit per la parte intera
+.subckt sommatore8BitIntero rip=zero 1num7=NCLK_e7 1num6=NCLK_e6 1num5=NCLK_e5 1num4=NCLK_e4 1num3=NCLK_e3 1num2=NCLK_e2 1num1=NCLK_e1 1num0=NCLK_e0 2num7=zero 2num6=zero 2num5=zero 2num4=zero 2num3=zero 2num2=zero 2num1=zero 2num0=uno out7=NCLK_r7 out6=NCLK_r6 out5=NCLK_r5 out4=NCLK_r4 out3=NCLK_r3 out2=NCLK_r2 out1=NCLK_r1 out0=NCLK_r0 printRip=printRip
+
+#-r->registro-d->
+#registro
+.subckt registro8Bit A7=NCLK_r7 A6=NCLK_r6 A5=NCLK_r5 A4=NCLK_r4 A3=NCLK_r3 A2=NCLK_r2 A1=NCLK_r1 A0=NCLK_r0 O7=NCLK_d7 O6=NCLK_d6 O5=NCLK_d5 O4=NCLK_d4 O3=NCLK_d3 O2=NCLK_d2 O1=NCLK_d1 O0=NCLK_d0
+
+#-d->demultiplexer-i->
+#                  -f->Fine
+.subckt demultiplexer8Bit Segnale=segnalePreFine A7=NCLK_d7 A6=NCLK_d6 A5=NCLK_d5 A4=NCLK_d4 A3=NCLK_d3 A2=NCLK_d2 A1=NCLK_d1 A0=NCLK_d0 O7=NCLK_fPre7 O6=NCLK_fPre6 O5=NCLK_fPre5 O4=NCLK_fPre4 O3=NCLK_fPre3 O2=NCLK_fPre2 O1=NCLK_fPre1 O0=NCLK_fPre0 Z7=NCLK_i7 Z6=NCLK_i6 Z5=NCLK_i5 Z4=NCLK_i4 Z3=NCLK_i3 Z2=NCLK_i2 Z1=NCLK_i1 Z0=NCLK_i0
+
+#SEGNALE GIUSTO A 1 (PH già nei range, tra 7 e 8)
+
+#Multiplexer per scegliere il PH da dare in output in base al segnaleGiusto (PH già nei range)
+.subckt multiplexer8Bit Segnale=segnaleGiustoUse A7=PH_i7 A6=PH_i6 A5=PH_i5 A4=PH_i4 A3=PH_i3 A2=PH_i2 A1=PH_i1 A0=PH_i0 B7=PH_fpremux7 B6=PH_fpremux6 B5=PH_fpremux5 B4=PH_fpremux4 B3=PH_fpremux3 B2=PH_fpremux2 B1=PH_fpremux1 B0=PH_fpremux0 O7=PH_f7 O6=PH_f6 O5=PH_f5 O4=PH_f4 O3=PH_f3 O2=PH_f2 O1=PH_f1 O0=PH_f0
+# O7=PH_fprecheck7 O6=PH_fprecheck6 O5=PH_fprecheck5 O4=PH_fprecheck4 O3=PH_fprecheck3 O2=PH_fprecheck2 O1=PH_fprecheck1 O0=PH_fprecheck0
+#Multiplexer per impostare il segnale fine ad 1
+.subckt multiplexer1Bit A=uno B=segnalePreFine Segnale=segnaleGiustoUse O=segnaleFine
+
+#Multiplexer per dare in output il Clock giusto
+.subckt multiplexer8Bit Segnale=segnaleGiustoUse A7=zero A6=zero A5=zero A4=zero A3=zero A2=zero A1=zero A0=zero B7=NCLK_fPre7 B6=NCLK_fPre6 B5=NCLK_fPre5 B4=NCLK_fPre4 B3=NCLK_fPre3 B2=NCLK_fPre2 B1=NCLK_fPre1 B0=NCLK_fPre0 O7=NCLK_f7 O6=NCLK_f6 O5=NCLK_f5 O4=NCLK_f4 O3=NCLK_f3 O2=NCLK_f2 O1=NCLK_f1 O0=NCLK_f0
+
+#Multiplexer finale che decide in base al segnaleFine se dare in output o meno il PH finale
+#.subckt multiplexer8Bit Segnale=segnaleFine A7=PH_fprecheck7 A6=PH_fprecheck6 A5=PH_fprecheck5 A4=PH_fprecheck4 A3=PH_fprecheck3 A2=PH_fprecheck2 A1=PH_fprecheck1 A0=PH_fprecheck0 B7=zero B6=zero B5=zero B4=zero B3=zero B2=zero B1=zero B0=zero O7=PH_f7 O6=PH_f6 O5=PH_f5 O4=PH_f4 O3=PH_f3 O2=PH_f2 O1=PH_f1 O0=PH_f0
+
+
+.search sommatore8Bit.blif
+.search registro1Bit.blif
+.search registro8Bit.blif
+.search multiplexer1Bit.blif
+.search multiplexer8Bit.blif
+.search demultiplexer8Bit.blif
+.search uguale1Bit.blif
+.search uguale8Bit.blif
+.search maggiore8Bit.blif
+.search minore8Bit.blif
+.search sommatore8BitIntero.blif
+
+.end
+
+#definizione costante valore 0
+.model costante0
+.outputs O
+.names O
+.end
+
+#definizione costante valore 1
+.model costante1
+.outputs O
+.names O
+1
+.end

@@ -1,0 +1,12 @@
+.model demultiplexer1Bit
+.inputs A Segnale
+.outputs O Z
+
+#se il segnale è 1, A lo darò in output su O, altrimenti va su Z
+.names Segnale A O
+11 1
+
+.names Segnale A Z
+01 1
+
+.end

@@ -1,0 +1,132 @@
+.model fsm
+.inputs Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine
+.outputs fineOperazione erroreSensore Valvola_acido Valvola_basico \
+segnaleInizio segnaleGiusto
+.latch    v13.0 LatchOut_v11   0
+.latch    v13.1 LatchOut_v12   0
+.start_kiss
+.i 11
+.o 6
+.p 28
+.s 4
+.r Reset
+00--------- Reset Reset 0000-0
+1---------- Reset Reset 0000-0
+01111----1- Reset Reset 0100-0
+01111---1-- Reset Reset 0100-0
+01111--1--- Reset Reset 0100-0
+01111-1---- Reset Reset 0100-0
+011111----- Reset Reset 0100-0
+010111----1 Reset Basico 000011
+01100000001 Reset Basico 000011
+011000---1- Reset Basico 001010
+011000--1-- Reset Basico 001010
+011000-1--- Reset Basico 001010
+0110001---- Reset Basico 001010
+0110-1----- Reset Basico 001010
+011010----- Reset Basico 001010
+01110------ Reset Basico 001010
+0111100000- Reset Basico 001010
+010000----- Reset Acido 000110
+0100-1----- Reset Acido 000110
+01010------ Reset Acido 000110
+010-10----- Reset Acido 000110
+0---------0 Basico Basico 001000
+1---------0 Basico Reset 000000
+----------1 Basico Fine 1000-0
+0---------0 Acido Acido 000100
+1---------- Acido Reset 000000
+0---------1 Acido Fine 1000-0
+----------- Fine Reset 000000
+.end_kiss
+.latch_order LatchOut_v11 LatchOut_v12
+.code Reset 00
+.code Basico 11
+.code Acido 01
+.code Fine 10
+.names segnaleFine LatchOut_v12 [73] fineOperazione
+111 1
+.names PH_i7 [44] [70] [71] erroreSensore
+1110 1
+.names Valvola_basico segnaleGiusto v13.1 Valvola_acido
+001 1
+.names Rst PH_i7 segnaleFine LatchOut_v11 LatchOut_v12 [44] [72] \
+Valvola_basico
+-0---11 1
+0-001-- 1
+.names erroreSensore [44] segnaleInizio
+01 1
+.names PH_i7 PH_i6 PH_i5 [44] [70] [72] segnaleGiusto
+0--1-0 1
+10010- 1
+.names fineOperazione Valvola_acido Valvola_basico segnaleInizio v13.0
+1--- 1
+-1-- 1
+--01 1
+.names Rst fineOperazione segnaleInizio LatchOut_v12 v13.1
+--1- 1
+00-1 1
+.names Rst Start LatchOut_v11 LatchOut_v12 [44]
+0100 1
+.names PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 [70]
+1---- 1
+-1--- 1
+--1-- 1
+---1- 1
+----1 1
+.names PH_i6 PH_i5 [71]
+0- 1
+-0 1
+.names PH_i4 [71] [72]
+0- 1
+-1 1
+.names Rst LatchOut_v11 [73]
+0- 1
+-1 1
+.exdc 
+.inputs Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12
+.outputs v13.0 v13.1 fineOperazione erroreSensore Valvola_acido Valvola_basico \
+segnaleInizio segnaleGiusto
+.names Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12 v13.0
+010111----000 1
+0110000000000 1
+.names Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12 v13.1
+010111----000 1
+0110000000000 1
+.names Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12 fineOperazione
+010111----000 1
+0110000000000 1
+.names Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12 erroreSensore
+010111----000 1
+0110000000000 1
+.names Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12 Valvola_acido
+010111----000 1
+0110000000000 1
+.names Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12 Valvola_basico
+010111----000 1
+0110000000000 1
+.names Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12 segnaleInizio
+0---------1-1 1
+----------111 1
+1----------00 1
+-0---------00 1
+--1111-----00 1
+--111-1----00 1
+--111--1---00 1
+--111---1--00 1
+--111----1-00 1
+010111----000 1
+0110000000000 1
+.names Rst Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 segnaleFine \
+LatchOut_v11 LatchOut_v12 segnaleGiusto
+010111----000 1
+0110000000000 1
+.end

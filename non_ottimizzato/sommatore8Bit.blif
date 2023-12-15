@@ -1,0 +1,25 @@
+.model sommatore8Bit
+
+#1num è il PH_iniziale, 2num è l'incremento che dobbiamo fare
+.inputs 1num7 1num6 1num5 1num4 1num3 1num2 1num1 1num0 2num3 2num2 2num1 2num0 rip
+.outputs out7 out6 out5 out4 out3 out2 out1 out0 printRip
+
+#somma 1 e 2°cifre (escludendo le prime 2)
+.subckt sommatore2Bit 1num0=1num2 1num1=1num3 2num0=2num2 2num1=2num3 rip=rip out0=out2 out1=out3 printRip=UseRip0
+
+#somma 3 e 4°cifre
+.subckt sommatore2Bit 1num0=1num4 1num1=1num5 2num0=2num1 2num1=2num0 rip=UseRip0 out0=out4 out1=out5 printRip=UseRip1
+
+#somma 5 e 6° (riuso 2num1 e 2num0 per passare il valore 0 alla somma)
+.subckt sommatore2Bit 1num0=1num6 1num1=1num7 2num0=2num1 2num1=2num0 rip=UseRip1 out0=out6 out1=out7 printRip=printRip
+
+#output per la cifra meno significativa del PH
+.names 1num1 out1
+1 1
+
+#output per la seconda cifra meno significativa del PH
+.names 1num0 out0
+1 1
+
+.search sommatore2Bit.blif
+.end

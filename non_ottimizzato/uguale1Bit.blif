@@ -1,0 +1,10 @@
+.model uguale1Bit
+.inputs A B
+.outputs O
+
+#se i 2 input sono =, dò in output 1
+.names A B O
+11 1
+00 1
+
+.end

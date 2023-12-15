@@ -1,0 +1,77 @@
+.model sommatore8BitIntero
+.inputs 1num7 1num6 1num5 1num4 1num3 1num2 1num1 1num0 2num7 2num6 2num5 \
+2num4 2num3 2num2 2num1 2num0 rip
+.outputs out7 out6 out5 out4 out3 out2 out1 out0 printRip
+.names [175] [176] out7
+01 1
+10 1
+.names [177] UseRip2 out6
+01 1
+10 1
+.names [172] [173] out5
+01 1
+10 1
+.names [174] UseRip1 out4
+01 1
+10 1
+.names [169] [170] out3
+01 1
+10 1
+.names [171] UseRip0 out2
+01 1
+10 1
+.names [157] UseRip out1
+01 1
+10 1
+.names Somma rip out0
+01 1
+10 1
+.names 1num7 [176] [175] printRip
+-11 1
+1-0 1
+.names 1num1 UseRip [157] UseRip0
+-11 1
+1-0 1
+.names 1num3 [170] [169] UseRip1
+-11 1
+1-0 1
+.names 1num5 [173] [172] UseRip2
+-11 1
+1-0 1
+.names 1num1 2num1 [157]
+01 1
+10 1
+.names 1num0 rip Somma UseRip
+-11 1
+1-0 1
+.names 1num0 2num0 Somma
+01 1
+10 1
+.names 1num3 2num3 [169]
+01 1
+10 1
+.names 1num2 UseRip0 [171] [170]
+-11 1
+1-0 1
+.names 1num2 2num2 [171]
+01 1
+10 1
+.names 1num5 2num5 [172]
+01 1
+10 1
+.names 1num4 UseRip1 [174] [173]
+-11 1
+1-0 1
+.names 1num4 2num4 [174]
+01 1
+10 1
+.names 1num7 2num7 [175]
+01 1
+10 1
+.names 1num6 UseRip2 [177] [176]
+-11 1
+1-0 1
+.names 1num6 2num6 [177]
+01 1
+10 1
+.end

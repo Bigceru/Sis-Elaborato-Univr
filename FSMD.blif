@@ -1,0 +1,282 @@
+.model FSMD
+.inputs Reset Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0
+.outputs fineOperazione erroreSensore Valvola_acido Valvola_basico PH_f7 PH_f6 \
+PH_f5 PH_f4 PH_f3 PH_f2 PH_f1 PH_f0 NCLK_f7 NCLK_f6 NCLK_f5 NCLK_f4 NCLK_f3 \
+NCLK_f2 NCLK_f1 NCLK_f0
+.latch    PH_i7 [1139] re NIL 0
+.latch    PH_i6 [1143] re NIL 0
+.latch    PH_i5 [1147] re NIL 0
+.latch    PH_i4 [1150] re NIL 0
+.latch    PH_i3 [1153] re NIL 0
+.latch    PH_i2 [1156] re NIL 0
+.latch    PH_i1 [1159] re NIL 0
+.latch    PH_i0 [1162] re NIL 0
+.latch    PH_r7 PH_c7 re NIL 0
+.latch    PH_r6 PH_c6 re NIL 0
+.latch    PH_r5 PH_c5 re NIL 0
+.latch    PH_r4 PH_c4 re NIL 0
+.latch    PH_r3 PH_c3 re NIL 0
+.latch    PH_r2 PH_c2 re NIL 0
+.latch    PH_e1 PH_c1 re NIL 0
+.latch    PH_e0 PH_c0 re NIL 0
+.latch    PH_Br7 PH_Bc7 re NIL 0
+.latch    PH_Br6 PH_Bc6 re NIL 0
+.latch    PH_Br5 PH_Bc5 re NIL 0
+.latch    PH_Br4 PH_Bc4 re NIL 0
+.latch    PH_Br3 PH_Bc3 re NIL 0
+.latch    PH_Be2 PH_Bc2 re NIL 0
+.latch    PH_Be1 PH_Bc1 re NIL 0
+.latch    PH_Be0 PH_Bc0 re NIL 0
+.latch    NCLK_r7 NCLK_d7 re NIL 0
+.latch    NCLK_r6 NCLK_d6 re NIL 0
+.latch    NCLK_r5 NCLK_d5 re NIL 0
+.latch    NCLK_r4 NCLK_d4 re NIL 0
+.latch    NCLK_r3 NCLK_d3 re NIL 0
+.latch    NCLK_r2 NCLK_d2 re NIL 0
+.latch    NCLK_r1 NCLK_d1 re NIL 0
+.latch    NCLK_r0 NCLK_d0 re NIL 0
+.latch    segnaleInizio segnaleInizioUse re NIL 0
+.latch    Reset Rst re NIL 0
+.latch    segnaleGiustoUse [1136] re NIL 0
+.latch    Valvola_basico Valvola_basicoUse re NIL 0
+.latch    Valvola_acido Valvola_acidoUse re NIL 0
+.latch    v13.0 LatchOut_v11   0
+.latch    v13.1 LatchOut_v12   0
+.names Reset [1136] segnalePreFine LatchOut_v12 LatchOut_v11 fineOperazione
+01-1- 1
+0-11- 1
+-1-11 1
+--111 1
+.names PH_i7 PH_i6 PH_i5 [44] [1379] erroreSensore
+11111 1
+.names Valvola_basico segnaleGiustoUse v13.1 Valvola_acido
+001 1
+.names Reset PH_i7 PH_i6 PH_i5 PH_i4 fineOperazione LatchOut_v12 [44] \
+LatchOut_v11 Valvola_basico
+-00----1- 1
+-0-0---1- 1
+-0--0--1- 1
+0----01-0 1
+.names [1136] Valvola_basicoUse [1139] PH_c7 PH_Bc7 [901] PH_f7
+1-1--- 1
+----11 1
+01-1-- 1
+.names [1136] [901] [1143] PH_c6 PH_Bc6 [1357] PH_f6
+1-1--- 1
+-1--1- 1
+---1-1 1
+.names [1136] [901] [1147] PH_c5 PH_Bc5 [1357] PH_f5
+1-1--- 1
+-1--1- 1
+---1-1 1
+.names [1136] [901] [1150] PH_c4 PH_Bc4 [1357] PH_f4
+1-1--- 1
+-1--1- 1
+---1-1 1
+.names [1136] [901] [1153] PH_c3 PH_Bc3 [1357] PH_f3
+1-1--- 1
+-1--1- 1
+---1-1 1
+.names [1136] [901] [1156] PH_c2 PH_Bc2 [1357] PH_f2
+1-1--- 1
+-1--1- 1
+---1-1 1
+.names [1136] [901] [1159] PH_c1 PH_Bc1 [1357] PH_f1
+1-1--- 1
+-1--1- 1
+---1-1 1
+.names [1136] [901] [1162] PH_c0 PH_Bc0 [1357] PH_f0
+1-1--- 1
+-1--1- 1
+---1-1 1
+.names NCLK_d7 [902] NCLK_f7
+11 1
+.names NCLK_d6 [902] NCLK_f6
+11 1
+.names NCLK_d5 [902] NCLK_f5
+11 1
+.names NCLK_d4 [902] NCLK_f4
+11 1
+.names NCLK_d3 [902] NCLK_f3
+11 1
+.names NCLK_d2 [902] NCLK_f2
+11 1
+.names NCLK_d1 [902] NCLK_f1
+11 1
+.names NCLK_d0 [902] NCLK_f0
+11 1
+.names erroreSensore [44] segnaleInizio
+01 1
+.names PH_i7 PH_i6 PH_i5 PH_i4 [44] [1379] segnaleGiustoUse
+01111- 1
+100-10 1
+.names Valvola_acidoUse segnaleFineB [896] segnalePreFine
+0-0 1
+-00 1
+111 1
+.names [1136] Valvola_basicoUse segnaleFineB [901]
+001 1
+.names [1136] segnalePreFine [902]
+01 1
+.names [1139] out2 PH_r6 UseRip1 PH_r7
+111- 1
+0-01 1
+11-0 1
+.names segnaleInizioUse Rst Valvola_basicoUse out2
+-1- 1
+1-1 1
+.names [1143] PH_c6 out2 UseRip1 [899] PH_r6
+0--1- 1
+--01- 1
+-1--1 1
+1-10- 1
+.names PH_r4 UseRip0 [1355] UseRip1
+011 1
+.names PH_c7 PH_c6 PH_c5 PH_c4 out2 [899]
+00--0 1
+0-0-0 1
+0--00 1
+.names UseRip1 PH_r4 UseRip0 [1355] PH_r5
+0--1 1
+001- 1
+.names [1150] PH_c4 out2 [899] UseRip0 PH_r4
+-0-11 1
+0--01 1
+1-1-0 1
+-1-10 1
+.names PH_r2 [1359] UseRip0
+01 1
+.names UseRip0 PH_r2 [1359] PH_r3
+00- 1
+0-1 1
+.names [1156] PH_c2 out2 [899] PH_r2
+00-- 1
+-00- 1
+0--0 1
+--00 1
+.names [1159] out2 PH_c1 [899] PH_e1
+11-- 1
+--11 1
+.names [1162] out2 PH_c0 [899] PH_e0
+11-- 1
+--11 1
+.names Bout2 [751] [903] [1360] [1364] PH_Br7
+0-0-- 1
+-1-1- 1
+---11 1
+-0-00 1
+.names segnaleInizioUse Rst Valvola_acidoUse Bout2
+-1- 1
+1-1 1
+.names PH_Br4 [1342] [1354] [751]
+0-- 1
+-1- 1
+--1 1
+.names Bout2 segnaleFineB [903]
+00 1
+.names [751] [1364] PH_Br6
+11 1
+00 1
+.names [751] PH_Br4 [1342] [1354] PH_Br5
+0--- 1
+-0-1 1
+--11 1
+.names PH_Br3 [1342] PH_Br4
+01 1
+10 1
+.names [1153] PH_Bc3 Bout2 [903] PH_Br3
+00-- 1
+-00- 1
+0--0 1
+--00 1
+.names [1156] Bout2 PH_Bc2 [903] PH_Be2
+11-- 1
+--11 1
+.names [1159] Bout2 PH_Bc1 [903] PH_Be1
+11-- 1
+--11 1
+.names [1162] Bout2 PH_Bc0 [903] PH_Be0
+11-- 1
+--11 1
+.names NCLK_d7 NCLK_r6 [895] [1325] NCLK_r7
+11-- 1
+1-01 1
+00-0 1
+.names NCLK_d6 [895] [1325] NCLK_r6
+0-0 1
+101 1
+.names segnaleInizioUse Rst segnalePreFine [895]
+1-- 1
+-1- 1
+--1 1
+.names NCLK_d5 NCLK_d4 [895] [859] [1325] NCLK_r5
+1-0-1 1
+-1-11 1
+.names NCLK_d4 [859] [895] NCLK_r4
+01- 1
+100 1
+.names NCLK_d3 NCLK_d2 [1361] [859]
+110 1
+.names NCLK_d3 [895] [859] NCLK_r2 [1361] NCLK_r3
+100-- 1
+--000 1
+.names NCLK_d2 [895] [1361] NCLK_r2
+0-0 1
+101 1
+.names NCLK_d1 [895] NCLK_r0 [1361] NCLK_r1
+--01 1
+10-1 1
+.names NCLK_d0 [895] NCLK_r0
+0- 1
+-1 1
+.names PH_Bc7 PH_Bc6 PH_Bc5 PH_Bc4 PH_Bc3 PH_Bc2 PH_Bc1 PH_Bc0 segnaleFineB
+0111---- 1
+10000000 1
+.names Valvola_basicoUse PH_c7 PH_c6 PH_c5 PH_c4 [896]
+0---- 1
+-00-- 1
+-0-0- 1
+-0--0 1
+.names Reset Start LatchOut_v11 LatchOut_v12 [44]
+0100 1
+.names Reset fineOperazione segnaleInizio LatchOut_v12 v13.1
+--1- 1
+00-1 1
+.names fineOperazione Valvola_acido Valvola_basico segnaleInizio v13.0
+1--- 1
+-1-- 1
+--01 1
+.names NCLK_d5 NCLK_d4 [859] [1325]
+0-- 1
+-0- 1
+--0 1
+.names [1150] PH_Bc4 Bout2 [903] [1342]
+1-1- 1
+-1-1 1
+.names [1147] PH_Bc5 Bout2 [903] [1354]
+1-1- 1
+-1-1 1
+.names [1147] PH_c5 out2 [899] [1355]
+1-1- 1
+-1-1 1
+.names [1136] [896] [1357]
+00 1
+.names [1153] PH_c3 out2 [899] [1359]
+1-1- 1
+-1-1 1
+.names [1139] PH_Bc7 [903] [1360]
+-11 1
+1-0 1
+.names NCLK_d1 NCLK_r0 [1361]
+0- 1
+-1 1
+.names [1143] PH_Bc6 Bout2 [903] [1364]
+1-1- 1
+-1-1 1
+.names PH_i4 PH_i3 PH_i2 PH_i1 PH_i0 [1379]
+1---- 1
+-1--- 1
+--1-- 1
+---1- 1
+----1 1
+.end

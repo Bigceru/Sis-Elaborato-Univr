@@ -1,0 +1,22 @@
+.model sommatore2Bit
+.inputs 1num1 1num0 2num1 2num0 rip
+.outputs out1 out0 printRip
+.names [157] UseRip out1
+01 1
+10 1
+.names Somma rip out0
+01 1
+10 1
+.names 1num1 UseRip [157] printRip
+-11 1
+1-0 1
+.names 1num0 rip Somma UseRip
+-11 1
+1-0 1
+.names 1num0 2num0 Somma
+01 1
+10 1
+.names 1num1 2num1 [157]
+01 1
+10 1
+.end

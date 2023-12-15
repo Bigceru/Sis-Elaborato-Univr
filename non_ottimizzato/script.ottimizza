@@ -1,0 +1,5 @@
+rl fsm.blif
+state_assign jedi
+source script.rugged
+source script.rugged
+write_blif fsmOptimize.blif

@@ -1,0 +1,13 @@
+.model sommatore
+.inputs A B rip
+.outputs out printRip
+.names Somma rip out
+01 1
+10 1
+.names A rip Somma printRip
+-11 1
+1-0 1
+.names A B Somma
+01 1
+10 1
+.end

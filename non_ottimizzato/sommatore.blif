@@ -1,0 +1,21 @@
+.model sommatore
+.inputs A B rip         #rip è il riporto in input che viene dall'operazione precedente
+.outputs out printRip   #printRip diventa rip
+
+#faccio la somma dei due numeri binari
+.names A B Somma
+10 1
+01 1
+
+#sommo il risultato della somma fatta prima con il riporto
+.names Somma rip out
+10 1
+01 1
+
+#verifico se c'è un riporto da utilizzare per il prossimo ciclo di somma
+.names A B rip printRip
+11- 1
+1-1 1
+-11 1
+
+.end

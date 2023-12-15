@@ -1,0 +1,27 @@
+.model minore8Bit
+.inputs A7 A6 A5 A4 A3 A2 A1 A0 B7 B6 B5 B4 B3 B2 B1 B0
+.outputs O
+
+#Uso l'uguale ad 1 bit per confrontare i 2 numeri e vedere se in quella posizione sono uguali
+.subckt uguale1Bit A=A7 B=B7 O=O7
+.subckt uguale1Bit A=A6 B=B6 O=O6
+.subckt uguale1Bit A=A5 B=B5 O=O5
+.subckt uguale1Bit A=A4 B=B4 O=O4
+.subckt uguale1Bit A=A3 B=B3 O=O3
+.subckt uguale1Bit A=A2 B=B2 O=O2
+.subckt uguale1Bit A=A1 B=B1 O=O1
+.subckt uguale1Bit A=A0 B=B0 O=O0
+
+#Se la B nella rispettiva posizione ha come uguaglianza 0, allora vuol dire che ha un bit più significativo più grande di A
+.names B7 B6 B5 B4 B3 B2 B1 B0 O7 O6 O5 O4 O3 O2 O1 O0 O
+1-------0------- 1
+-1------10------ 1
+--1-----110----- 1
+---1----1110---- 1
+----1---11110--- 1
+-----1--111110-- 1
+------1-1111110- 1
+-------111111110 1
+
+.search uguale1Bit.blif
+.end

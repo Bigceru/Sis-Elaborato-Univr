@@ -1,0 +1,7 @@
+.model multiplexer1Bit
+.inputs A B Segnale
+.outputs O
+.names Segnale A B O
+11- 1
+0-1 1
+.end

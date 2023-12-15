@@ -1,0 +1,7 @@
+.model registro1Bit
+.inputs A
+.outputs O
+
+#creo un registro con input A, output B, tipo re, clock NIL e valore iniziale 0
+.latch A O re NIL 0
+.end

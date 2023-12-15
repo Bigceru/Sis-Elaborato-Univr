@@ -1,0 +1,10 @@
+.model multiplexer1Bit
+.inputs A B Segnale
+.outputs O
+
+#se il segnale è 1, output = A, se il segnale è 0, output = B
+.names Segnale A B O
+11- 1
+0-1 1
+
+.end

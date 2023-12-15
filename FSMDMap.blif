@@ -1,0 +1,661 @@
+.model FSMD
+.inputs Reset Start PH_i7 PH_i6 PH_i5 PH_i4 PH_i3 PH_i2 PH_i1 PH_i0
+.outputs fineOperazione erroreSensore Valvola_acido Valvola_basico PH_f7 PH_f6 \
+PH_f5 PH_f4 PH_f3 PH_f2 PH_f1 PH_f0 NCLK_f7 NCLK_f6 NCLK_f5 NCLK_f4 NCLK_f3 \
+NCLK_f2 NCLK_f1 NCLK_f0
+.default_input_arrival 0.00 0.00 
+.default_output_required 0.00 0.00 
+.default_input_drive 0.20 0.20 
+.default_output_load 1.00 
+.default_max_input_load 999.00 
+.latch    [1157] LatchOut_v11 re NIL 0
+.latch    [1155] LatchOut_v12 re NIL 0
+.latch    [1972] segnaleInizioUse re NIL 0
+.latch    [1903] Rst re NIL 0
+.latch    [1154] [240] re NIL 0
+.latch    [1156] Valvola_basicoUse re NIL 0
+.latch    [1949] Valvola_acidoUse re NIL 0
+.latch    [1908] [243] re NIL 0
+.latch    [1915] [245] re NIL 0
+.latch    [1919] [247] re NIL 0
+.latch    [1923] [249] re NIL 0
+.latch    [1930] [251] re NIL 0
+.latch    [1933] [253] re NIL 0
+.latch    [1936] [255] re NIL 0
+.latch    [1939] [257] re NIL 0
+.latch    [1153] PH_c7 re NIL 0
+.latch    [1152] PH_c6 re NIL 0
+.latch    [1151] PH_c5 re NIL 0
+.latch    [1150] PH_c4 re NIL 0
+.latch    [1149] PH_c3 re NIL 0
+.latch    [2322] PH_c2 re NIL 0
+.latch    [1148] PH_c1 re NIL 0
+.latch    [1147] PH_c0 re NIL 0
+.latch    [1146] PH_Bc7 re NIL 0
+.latch    [1145] PH_Bc6 re NIL 0
+.latch    [1144] PH_Bc5 re NIL 0
+.latch    [1143] PH_Bc4 re NIL 0
+.latch    [2505] PH_Bc3 re NIL 0
+.latch    [1142] PH_Bc2 re NIL 0
+.latch    [1141] PH_Bc1 re NIL 0
+.latch    [1140] PH_Bc0 re NIL 0
+.latch    [1139] NCLK_d7 re NIL 0
+.latch    [1138] NCLK_d6 re NIL 0
+.latch    [1137] NCLK_d5 re NIL 0
+.latch    [1136] NCLK_d4 re NIL 0
+.latch    [1135] NCLK_d3 re NIL 0
+.latch    [1134] NCLK_d2 re NIL 0
+.latch    [1133] NCLK_d1 re NIL 0
+.latch    NCLK_r0 NCLK_d0 re NIL 0
+.names Reset [1902]
+0 1
+.names LatchOut_v11 [1748]
+0 1
+.names LatchOut_v12 [1749]
+0 1
+.names [1902] Start [1748] [1749] [1751]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names PH_i0 PH_i4 PH_i3 [8120]
+000 1
+.names PH_i2 PH_i1 [1667]
+00 1
+.names [8120] [1667] [1744]
+0- 1
+-0 1
+.names PH_i6 PH_i5 [1754]
+0- 1
+-0 1
+.names [1751] [1754] [1755]
+1- 1
+-1 1
+.names [1755] [1993]
+0 1
+.names [1744] PH_i7 [1993] [1945]
+0-- 1
+-0- 1
+--0 1
+.names [1751] [1945] [1757]
+1- 1
+-0 1
+.names [240] [1758]
+0 1
+.names PH_c7 [1760]
+0 1
+.names [1760] PH_c6 PH_c5 PH_c4 [2904]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names [1760] [2904] [1766]
+0- 1
+-0 1
+.names [1766] Valvola_basicoUse FinaleA
+11 1
+.names Valvola_acidoUse [1768]
+0 1
+.names PH_Bc7 [1769]
+0 1
+.names PH_Bc6 [1769] PH_Bc5 PH_Bc4 [1729]
+0000 1
+.names PH_Bc3 PH_Bc2 PH_Bc1 PH_Bc0 [1722]
+0000 1
+.names [1729] [1722] [2902]
+0- 1
+-0 1
+.names [1769] PH_Bc6 PH_Bc5 PH_Bc4 [2900]
+0--- 1
+-0-- 1
+--0- 1
+---0 1
+.names [2902] [2900] PH_Bc7 [1785]
+1-1 1
+-10 1
+.names [1768] [1785] FinaleB
+00 1
+.names FinaleA FinaleB [1787]
+01 1
+10 1
+.names [240] [1758] [1787] seganleFineUse
+00- 1
+0-0 1
+.names [1902] LatchOut_v11 [1789]
+0- 1
+-0 1
+.names [1789] LatchOut_v12 [1748] [2676]
+0-- 1
+-00 1
+.names seganleFineUse [2676] [1941]
+1- 1
+-0 1
+.names [1941] fineOperazione
+0 1
+.names [1757] fineOperazione [1789] [2957]
+0-- 1
+-00 1
+.names [2957] [1157]
+1 1
+.names PH_i7 [1751] [1653]
+00 1
+.names PH_i4 [1740]
+0 1
+.names [1653] [1740] [1754] [2886]
+0-- 1
+-00 1
+.names LatchOut_v12 seganleFineUse [1791]
+0- 1
+-0 1
+.names [2886] [1789] [1791] Valvola_basico
+0-- 1
+-00 1
+.names Valvola_basico [1941] [2958]
+1- 1
+-0 1
+.names [2958] [1155]
+1 1
+.names [1757] [2959]
+0 1
+.names [2959] [1972]
+1 1
+.names Reset [1903]
+1 1
+.names [1744] [1751] [1636]
+00 1
+.names PH_i5 [1753]
+0 1
+.names PH_i7 [1745]
+0 1
+.names PH_i6 [1745] [1640]
+00 1
+.names [1636] [1753] [1640] [1993] [1745] PH_i4 [2961]
+111--- 1
+---111 1
+.names [2961] [1154]
+1 1
+.names Valvola_basico [1156]
+1 1
+.names [1789] [2961] [1757] [2678]
+0-- 1
+-00 1
+.names [2958] [2678] [1948]
+1- 1
+-0 1
+.names [1948] Valvola_acido
+0 1
+.names Valvola_acido [1949]
+1 1
+.names PH_i7 [1908]
+1 1
+.names PH_i6 [1915]
+1 1
+.names PH_i5 [1919]
+1 1
+.names PH_i4 [1923]
+1 1
+.names PH_i3 [1930]
+1 1
+.names PH_i2 [1933]
+1 1
+.names PH_i1 [1936]
+1 1
+.names PH_i0 [1939]
+1 1
+.names Rst [1796]
+0 1
+.names Valvola_basicoUse segnaleInizioUse [1798]
+0- 1
+-0 1
+.names [1796] Rst [1798] [1799]
+0-- 1
+-00 1
+.names [1799] [1760] [1766] [1101]
+000 1
+.names [1101] [1799] [243] PH_e7
+00- 1
+0-0 1
+.names PH_e7 [1802]
+0 1
+.names PH_c6 [1761]
+0 1
+.names [1799] [1761] [1766] [1099]
+000 1
+.names [1099] [1799] [245] PH_e6
+00- 1
+0-0 1
+.names PH_e6 [1805]
+0 1
+.names PH_c5 [1763]
+0 1
+.names [1799] [1763] [1766] [1097]
+000 1
+.names [1097] [1799] [247] PH_e5
+00- 1
+0-0 1
+.names PH_e5 [1808]
+0 1
+.names PH_c4 [1764]
+0 1
+.names [1799] [1764] [1766] [1095]
+000 1
+.names [1095] [1799] [249] PH_e4
+00- 1
+0-0 1
+.names PH_e4 [1811]
+0 1
+.names [1799] [251] [2860]
+0- 1
+-0 1
+.names [1766] PH_c3 [1813]
+1- 1
+-0 1
+.names [2860] [1799] [1813] [1815]
+0-- 1
+-00 1
+.names [1799] [253] [2856]
+0- 1
+-0 1
+.names [1766] PH_c2 [1817]
+1- 1
+-0 1
+.names [2856] [1799] [1817] [1819]
+0-- 1
+-00 1
+.names [1815] [1819] [1820]
+0- 1
+-0 1
+.names PH_e4 [1820] [1821]
+1- 1
+-1 1
+.names PH_e5 [1821] [1822]
+1- 1
+-1 1
+.names PH_e6 [1822] [1823]
+1- 1
+-1 1
+.names [1823] [2326]
+0 1
+.names PH_e7 [2326] [1802] [1823] [2972]
+00-- 1
+--00 1
+.names [2972] [1153]
+1 1
+.names [1822] [2329]
+0 1
+.names PH_e6 [2329] [1805] [1822] [2973]
+00-- 1
+--00 1
+.names [2973] [1152]
+1 1
+.names [1821] [2334]
+0 1
+.names PH_e5 [2334] [1808] [1821] [2974]
+00-- 1
+--00 1
+.names [2974] [1151]
+1 1
+.names [1820] [2339]
+0 1
+.names PH_e4 [2339] [1811] [1820] [2975]
+00-- 1
+--00 1
+.names [2975] [1150]
+1 1
+.names [1815] [2318]
+0 1
+.names [1819] [2323]
+0 1
+.names [2318] [1819] [2323] [1815] [2976]
+00-- 1
+--00 1
+.names [2976] [1149]
+1 1
+.names [2323] [2322]
+1 1
+.names [1799] [255] [2832]
+0- 1
+-0 1
+.names [1766] PH_c1 [1825]
+1- 1
+-0 1
+.names [2832] [1799] [1825] [2978]
+0-- 1
+-00 1
+.names [2978] [1148]
+1 1
+.names [1799] [257] [2828]
+0- 1
+-0 1
+.names [1766] PH_c0 [1828]
+1- 1
+-0 1
+.names [2828] [1799] [1828] [2979]
+0-- 1
+-00 1
+.names [2979] [1147]
+1 1
+.names Valvola_acidoUse segnaleInizioUse [1830]
+0- 1
+-0 1
+.names [1796] Rst [1830] [1831]
+0-- 1
+-00 1
+.names [1831] [245] [2818]
+0- 1
+-0 1
+.names [1785] PH_Bc6 [1834]
+0- 1
+-0 1
+.names [2818] [1831] [1834] [1835]
+0-- 1
+-00 1
+.names [1831] [247] [2814]
+0- 1
+-0 1
+.names [1785] PH_Bc5 [1836]
+0- 1
+-0 1
+.names [2814] [1831] [1836] [1837]
+0-- 1
+-00 1
+.names [1831] [249] [2810]
+0- 1
+-0 1
+.names [1785] PH_Bc4 [1838]
+0- 1
+-0 1
+.names [2810] [1831] [1838] [1839]
+0-- 1
+-00 1
+.names [1831] [251] [2806]
+0- 1
+-0 1
+.names [1785] PH_Bc3 [1840]
+0- 1
+-0 1
+.names [2806] [1831] [1840] [1841]
+0-- 1
+-00 1
+.names [1839] [1841] [1842]
+1- 1
+-1 1
+.names [1837] [1842] [1843]
+1- 1
+-1 1
+.names [1835] [1843] [124]
+00 1
+.names [1785] PH_Bc7 [1832]
+0- 1
+-0 1
+.names [1831] [1832] [1073]
+00 1
+.names [1073] [1831] [243] PH_Be7
+00- 1
+0-0 1
+.names [124] PH_Be7 [2980]
+11 1
+00 1
+.names [2980] [1146]
+1 1
+.names [1835] [1843] [2798]
+0- 1
+-0 1
+.names [2798] [1835] [1843] [2981]
+0-- 1
+-00 1
+.names [2981] [1145]
+1 1
+.names [1837] [1842] [2794]
+0- 1
+-0 1
+.names [2794] [1837] [1842] [2982]
+0-- 1
+-00 1
+.names [2982] [1144]
+1 1
+.names [1839] [1841] [2790]
+0- 1
+-0 1
+.names [2790] [1839] [1841] [2983]
+0-- 1
+-00 1
+.names [2983] [1143]
+1 1
+.names [1841] [2984]
+0 1
+.names [2984] [2505]
+1 1
+.names [1831] [253] [2786]
+0- 1
+-0 1
+.names [1785] PH_Bc2 [1845]
+0- 1
+-0 1
+.names [2786] [1831] [1845] [2985]
+0-- 1
+-00 1
+.names [2985] [1142]
+1 1
+.names [1831] [255] [2782]
+0- 1
+-0 1
+.names [1785] PH_Bc1 [1846]
+0- 1
+-0 1
+.names [2782] [1831] [1846] [2986]
+0-- 1
+-00 1
+.names [2986] [1141]
+1 1
+.names [1831] [257] [2778]
+0- 1
+-0 1
+.names [1785] PH_Bc0 [1847]
+0- 1
+-0 1
+.names [2778] [1831] [1847] [2987]
+0-- 1
+-00 1
+.names [2987] [1140]
+1 1
+.names segnaleInizioUse [1797]
+0 1
+.names [1797] segnaleInizioUse [1796] [1848]
+0-- 1
+-00 1
+.names NCLK_d7 [1849]
+0 1
+.names [1848] [1787] [1849] NCLK_e7
+000 1
+.names NCLK_d6 [1852]
+0 1
+.names [1848] [1787] [1852] [1854]
+1-- 1
+-1- 1
+--1 1
+.names NCLK_d5 [1855]
+0 1
+.names [1848] [1787] [1855] [1857]
+1-- 1
+-1- 1
+--1 1
+.names NCLK_d4 [1858]
+0 1
+.names [1848] [1787] [1858] [1860]
+1-- 1
+-1- 1
+--1 1
+.names NCLK_d3 [1861]
+0 1
+.names [1848] [1787] [1861] [1863]
+1-- 1
+-1- 1
+--1 1
+.names NCLK_d2 [1864]
+0 1
+.names [1848] [1787] [1864] [1866]
+1-- 1
+-1- 1
+--1 1
+.names NCLK_d0 [1870]
+0 1
+.names [1848] [1787] [1870] [2995]
+1-- 1
+-1- 1
+--1 1
+.names NCLK_d1 [1867]
+0 1
+.names [1848] [1787] [1867] [1869]
+1-- 1
+-1- 1
+--1 1
+.names [2995] [1869] [1872]
+1- 1
+-1 1
+.names [1866] [1872] [1873]
+1- 1
+-1 1
+.names [1863] [1873] [1874]
+1- 1
+-1 1
+.names [1860] [1874] [1875]
+1- 1
+-1 1
+.names [1857] [1875] [1876]
+1- 1
+-1 1
+.names [1854] [1876] [101]
+00 1
+.names NCLK_e7 [101] [2988]
+01 1
+10 1
+.names [2988] [1139]
+1 1
+.names [1848] [1787] [1852] NCLK_e6
+000 1
+.names [1857] [1875] UseRip2
+00 1
+.names NCLK_e6 UseRip2 [2989]
+01 1
+10 1
+.names [2989] [1138]
+1 1
+.names [1848] [1787] [1855] NCLK_e5
+000 1
+.names [1860] [1874] [98]
+00 1
+.names NCLK_e5 [98] [2990]
+01 1
+10 1
+.names [2990] [1137]
+1 1
+.names [1848] [1787] [1858] NCLK_e4
+000 1
+.names [1863] [1873] [215]
+00 1
+.names NCLK_e4 [215] [2991]
+01 1
+10 1
+.names [2991] [1136]
+1 1
+.names [1848] [1787] [1861] NCLK_e3
+000 1
+.names [1866] [1872] [95]
+00 1
+.names NCLK_e3 [95] [2992]
+01 1
+10 1
+.names [2992] [1135]
+1 1
+.names [1848] [1787] [1864] NCLK_e2
+000 1
+.names [2995] [1869] [219]
+00 1
+.names NCLK_e2 [219] [2993]
+01 1
+10 1
+.names [2993] [1134]
+1 1
+.names [2995] [2643]
+0 1
+.names [1869] [2638]
+0 1
+.names [2643] [1869] [2638] [2995] [2994]
+00-- 1
+--00 1
+.names [2994] [1133]
+1 1
+.names [2995] NCLK_r0
+1 1
+.names [1945] erroreSensore
+0 1
+.names Valvola_basicoUse [1759]
+0 1
+.names [1785] [2405]
+0 1
+.names [1759] PH_Bc7 [2405] Valvola_basicoUse [1766] PH_c7 [2081]
+111--- 1
+---111 1
+.names [243] [2081] [240] PH_f7
+1-1 1
+-10 1
+.names [1759] PH_Bc6 [2405] Valvola_basicoUse [1766] PH_c6 [2089]
+111--- 1
+---111 1
+.names [245] [2089] [240] PH_f6
+1-1 1
+-10 1
+.names [1759] PH_Bc5 [2405] Valvola_basicoUse [1766] PH_c5 [2097]
+111--- 1
+---111 1
+.names [247] [2097] [240] PH_f5
+1-1 1
+-10 1
+.names [1759] PH_Bc4 [2405] Valvola_basicoUse [1766] PH_c4 [2105]
+111--- 1
+---111 1
+.names [249] [2105] [240] PH_f4
+1-1 1
+-10 1
+.names [1759] PH_Bc3 [2405] Valvola_basicoUse [1766] PH_c3 [2113]
+111--- 1
+---111 1
+.names [251] [2113] [240] PH_f3
+1-1 1
+-10 1
+.names [1759] PH_Bc2 [2405] Valvola_basicoUse [1766] PH_c2 [2121]
+111--- 1
+---111 1
+.names [253] [2121] [240] PH_f2
+1-1 1
+-10 1
+.names [1759] PH_Bc1 [2405] Valvola_basicoUse [1766] PH_c1 [2129]
+111--- 1
+---111 1
+.names [255] [2129] [240] PH_f1
+1-1 1
+-10 1
+.names [1759] PH_Bc0 [2405] Valvola_basicoUse [1766] PH_c0 [2137]
+111--- 1
+---111 1
+.names [257] [2137] [240] PH_f0
+1-1 1
+-10 1
+.names [1758] [1787] NCLK_d7 NCLK_f7
+111 1
+.names [1758] [1787] NCLK_d6 NCLK_f6
+111 1
+.names [1758] [1787] NCLK_d5 NCLK_f5
+111 1
+.names [1758] [1787] NCLK_d4 NCLK_f4
+111 1
+.names [1758] [1787] NCLK_d3 NCLK_f3
+111 1
+.names [1758] [1787] NCLK_d2 NCLK_f2
+111 1
+.names [1758] [1787] NCLK_d1 NCLK_f1
+111 1
+.names [1758] [1787] NCLK_d0 NCLK_f0
+111 1
+.end
